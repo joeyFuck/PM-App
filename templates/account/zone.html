@@ -1,0 +1,15 @@
+﻿<ion-view view-title="设置附近工程范围">
+  <ion-content padding="false" has-bouncing="true">
+      <div class="list card"> 
+          <div class="item item-body">
+             搜索附近工程时，以您设置的搜索范围来定位您附近的工程。<br/>
+              当前值：{{ zonevalue}}(千米)
+          </div> 
+          <div class="item range range-positive">
+              <i class="icon ion-ios-minus-empty"></i>
+              <input type="range" name="volume" ng-model="zonevalue" ng-init="zonevalue=5" min="0" max="20" value="5">
+              <i class="icon ion-ios-plus-empty"></i>
+          </div>
+      </div>
+  </ion-content>
+</ion-view>

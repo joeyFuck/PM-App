@@ -1,0 +1,42 @@
+﻿<ion-view view-title="备案详情">
+    <ion-content padding="false" has-bouncing="true">
+        <div class="list list-inset">            
+            <div class="item">
+                备案编号
+                <span class="item-note">{{machinerydetail.BeiAnICP}}</span>
+            </div>  
+            <div class="item">
+                规格型号
+                <span class="item-note">{{machinerydetail.SpecificationModel}}</span>
+            </div>     
+            <div class="item">
+                机械区域
+                <span class="item-note">{{machinerydetail.IsOutland}}</span>
+            </div>  
+            <div class="item">
+                申请人
+                <span class="item-note">{{machinerydetail.ApplyMan}}</span>
+            </div>  
+            <div class="item">
+                出厂日期
+                <span class="item-note">{{machinerydetail.MadeDate | brDateFilter}}</span>
+            </div>  
+            <div class="item">
+                使用期限
+                <span class="item-note">{{machinerydetail.UseEndDate | brDateFilter}}</span>
+            </div>  
+            <div class="item">
+                出厂编号
+                <span class="item-note">{{machinerydetail.FactoryNO}}</span>
+            </div>  
+            <div class="item">
+                生产厂商
+                <span class="item-note">{{machinerydetail.FactoryName}}</span>
+            </div> 
+            <div class="item">
+                产权单位
+                <span class="item-note">{{machinerydetail.PropertyCompanyName}}</span>
+            </div>        
+        </div>
+    </ion-content>
+</ion-view>

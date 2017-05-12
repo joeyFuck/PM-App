@@ -1,0 +1,34 @@
+﻿<ion-view  view-title="项目看板">
+<ion-nav-buttons side="right">
+	<!--<a class="button button-stable" href="#/menus/common/projectmap/{{moduletype}}">地图查找</a>-->
+      
+    </ion-nav-buttons>
+  <ion-content has-bouncing="true">
+      <ion-refresher pulling-text="下拉刷新"
+                     refreshing-text="刷新成功"
+                     refreshing-icon="ion-loading-c"
+                     on-refresh="doRefresh()">
+      </ion-refresher>
+
+	</ion-header-bar>
+      <div class="list card prolist" ng-repeat="project in projects">
+          <div class="item item-divider item-btitle protop">{{project.RegNumber}}<!--<span class="item-note">最近检查：{{project.LastCheckTime | brDateFilter}}</span>-->
+              <span class="badge {{project.badgestyle}}" style="right:5px;">通知书{{project.LastNoticeInfo}} 未闭合：{{project.closeNum}}</span>
+          </div>
+          <a class="item item-body" href="#/menus/board/projects/{{project.ProID}}">
+              <h2>
+                 {{project.ProName}}
+              </h2>
+              <div class="prodes"> 
+                  	施工单位：{{project.ShigongUnitName}}
+              </div>
+              <div class="prodes"> 
+                  	项目经理：{{project.ConProjectManager}}
+              </div>
+          </a>
+      </div>
+      <ion-infinite-scroll ng-if="load_over" on-infinite="loadMore()"
+                           distance="1%">
+      </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,25 @@
+﻿<ion-view view-title="人员详情">
+    <ion-content padding="false" has-bouncing="true">
+        <div class="list list-inset">     
+        	<div class="item">
+                {{persondetail.PersonType}}
+            </div>
+            <div class="item">
+                姓名
+                <span class="item-note">{{persondetail.TrueName}}</span>
+            </div>
+            <div class="item">
+                电话
+                <span class="item-note"><a href="tel:{{persondetail.Phone}}">{{persondetail.Phone}}</a></span>
+            </div> 
+            <div class="item">
+                身份证
+                <span class="item-note">{{persondetail.IdentityCard}}</span>
+            </div> 
+            <div class="item">
+                资格等级
+                <span class="item-note">{{persondetail.CerNo}}</span>
+            </div>         
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,176 @@
+﻿<ion-view view-title="工程详情"> 
+  <ion-content class="padding" has-bouncing="true">       
+      <ion-list class="xmkb">          
+          <!--begin 工程基本情况-->
+          <div class="item-box">
+              <ion-item 
+                        ng-click="toggleGroup(1)"
+                        ng-class="{true: 'item-calm roundedtop',false:'item-stable rounded'}[isGroupShown(1)]">
+                  <i class="icon" ng-class="isGroupShown(1) ? 'ion-minus' : 'ion-plus'"></i>
+                  &nbsp;
+                  工程基本情况
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(1)">
+                  工程名称：
+                  <span class="item-note" style="white-space: initial;">{{projectDetail.ProName}}</span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(1)" ng-if="moduletype==2">
+                  质量监督注册号：
+                  <span class="item-note">{{projectDetail.QualityRegNumber}}</span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(1)" ng-if="moduletype==1">
+                  安全监督注册号：
+                  <span class="item-note">{{projectDetail.RegNumber}}</span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(1)">
+                  施工单位：
+                  <span class="item-note">{{projectDetail.ShigongUnitName}}</span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(1)">
+                  监理单位：
+                  <span class="item-note">{{projectDetail.JianLiUnitName}}</span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(1)">
+                  监督员：
+                  <span class="item-note">{{projectDetail.ProUsers | delHtmlTag}}</span>
+              </ion-item>              
+          </div> 
+          <!--end-->          
+          <!--begin 监督情况-->
+          <div class="item-box">
+              <ion-item 
+                        ng-click="toggleGroup(2)"
+                        ng-class="{true: 'item-calm roundedtop',false:'item-stable rounded'}[isGroupShown(2)]">
+                  <i class="icon" ng-class="isGroupShown(2) ? 'ion-minus' : 'ion-plus'"></i>
+                  &nbsp;
+                  监督情况
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(2)">
+                  登记日期：<span class="item-note">{{projectDetail.ProjectCreateTime }}</span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(2)">
+                  检查次数：<span class="item-note">{{projectDetail.CheckTimes}}次</span>
+              </ion-item>
+              
+              <ion-item class="item-accordion" ng-show="isGroupShown(2)" ng-if="moduletype==1">                 
+			抽查记录：<span class="item-note">{{projectDetail.CheckRecord}}次</span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(2)" ng-if="moduletype==1">                 
+			建议书：<span class="item-note">{{projectDetail.SuggestCount}}次</span>
+              </ion-item>
+               <ion-item class="item-accordion" ng-show="isGroupShown(2)" ng-if="moduletype==1">                 
+			整改通知：<span class="item-note">{{projectDetail.NoticeCount}}次</span>
+              </ion-item>
+              
+              <ion-item class="item-accordion" ng-show="isGroupShown(2)" ng-if="moduletype==2">                 
+			抽查通知（不需回复）：<span class="item-note">{{projectDetail.CheckNoticeNoRecive}}次</span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(2)" ng-if="moduletype==2">
+                  抽查通知（需回复）：<span class="item-note">{{projectDetail.CheckNoticeRecive}}份</span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(2)" ng-if="moduletype==2">
+                  责令整改：<span class="item-note">{{projectDetail.Rectification}}份</span>
+              </ion-item>
+              
+              <ion-item class="item-accordion" ng-show="isGroupShown(2)" >
+                  停工整改：：<span class="item-note">{{projectDetail.ShutdownRectification}}份</span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(2)" >
+                  未闭合：<span class="item-note">{{projectDetail.CloseNum}}份</span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(2)">
+                  最近检查日期： <span class="item-note">{{projectDetail.RecentCheckTime}}</span>
+              </ion-item>
+          </div>
+          <!--end--> 
+          
+           <!--begin 验收情况-->
+          <div class="item-box" ng-if="moduletype==2">
+              <ion-item 
+                        ng-click="toggleGroup(4)"
+                        ng-class="{true: 'item-calm roundedtop',false:'item-stable rounded'}[isGroupShown(4)]">
+                  <i class="icon" ng-class="isGroupShown(4) ? 'ion-minus' : 'ion-plus'"></i>
+                  &nbsp;
+                  验收情况
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(4)">
+                  验收类型<span class="item-note" style="color: currentColor;font-size:16px">资料复查日期/登记日期</span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(4)" ng-repeat="FoundationDivision in projectDetail.FoundationDivision">
+                  {{FoundationDivision.AcceptType}}：<span class="item-note">{{FoundationDivision.ReviewDate }}/{{FoundationDivision.RegisterDate }}</span>
+              </ion-item>
+               <ion-item class="item-accordion" ng-show="isGroupShown(4)" ng-repeat="MainBranch in projectDetail.MainBranch">
+                  {{MainBranch.AcceptType}}：<span class="item-note">{{MainBranch.ReviewDate }}/{{MainBranch.RegisterDate }}</span>
+              </ion-item>
+               <ion-item class="item-accordion" ng-show="isGroupShown(4)" ng-repeat="FinalAcceptance in projectDetail.FinalAcceptance">
+                  {{FinalAcceptance.AcceptType}}：<span class="item-note">{{FinalAcceptance.ReviewDate }}/{{FinalAcceptance.RegisterDate }}</span>
+              </ion-item>
+          </div>
+          <!--end-->       
+          
+          <!--begin 危险源情况-->
+          <div class="item-box" ng-if="moduletype==1">
+              <ion-item 
+                        ng-click="toggleGroup(3)"
+                        ng-class="{true: 'item-calm roundedtop',false:'item-stable rounded'}[isGroupShown(3)]">
+                  <i class="icon" ng-class="isGroupShown(3) ? 'ion-minus' : 'ion-plus'"></i>
+                  &nbsp;
+                  危险源情况
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(3)">
+                  危险源名称<span class="item-note" style="color: currentColor;font-size:16px">申报/确认日期</span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(3)">
+                  基坑支护：<br /><span class="item-note" style="float: left;"><i ng-repeat="Data in projectDetail.JiKengZhiHu">
+                 {{Data.Stage}}: 	{{Data.ApplyDate}}/{{Data.ConfirmData}}<br />
+                  </i></span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(3)">
+                  高大支模：<br /><span class="item-note" style="float: left;"><i ng-repeat="Data in projectDetail.GaoDaZhiMo">
+                  {{Data.Stage}}: 	 	{{Data.ApplyDate}}/{{Data.ConfirmData}}<br />
+                  </i></span>
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(3)">
+                  其他：<br /><span class="item-note" style="float: left;"><i ng-repeat="Data in projectDetail.Other">
+                  {{Data.Stage}}: 		{{Data.ApplyDate}}/{{Data.ConfirmData}}<br />
+                  </i></span>
+              </ion-item>
+       
+          </div>
+          <!--end-->                   
+          
+          <!--begin 工程人员信息-->
+          <div class="item-box">
+              <ion-item
+                        ng-click="toggleGroup(6)"
+                        ng-class="{true: 'item-calm roundedtop',false:'item-stable rounded'}[isGroupShown(6)]">
+                  <i class="icon" ng-class="isGroupShown(6) ? 'ion-minus' : 'ion-plus'"></i>
+                  &nbsp;
+                  工程人员信息
+              </ion-item>
+              <a class="item item-accordion" href="#/menus/common/properson/{{person.PPersonID}}/{{person.PersonTypeName}}" ng-show="isGroupShown(6)" ng-repeat="person in ProjectPersons">
+                  {{person.PersonTypeName}}
+                  <span class="item-note" style="float: none;"> <br>{{person.TrueName}}&nbsp;&nbsp; {{person.Phone}}</span>
+              </a>       
+          </div>
+          <!--end-->
+        
+        <div class="item-box" ng-if="moduletype==1">
+              <ion-item ng-click="toggleGroup(7)"
+                        ng-class="{true: 'item-calm roundedtop',false:'item-stable rounded'}[isGroupShown(7)]">
+                  <i class="icon" ng-class="isGroupShown(7) ? 'ion-minus' : 'ion-plus'"></i>
+                  &nbsp;
+                  起重机械
+              </ion-item>
+              <a class="item item-accordion" href="#/menus/board/probeian/{{beian.InstallID}}" ng-show="isGroupShown(7)" ng-repeat="beian in beians">
+                  {{beian.BeiAnICP}}    
+                  <span class="item-note">{{beian.SiteNo}}</span>             
+              </a>
+          </div>
+     
+             
+          </a>   
+          </div>
+      </ion-list>
+  </ion-content>
+</ion-view>

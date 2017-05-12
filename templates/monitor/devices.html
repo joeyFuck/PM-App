@@ -1,0 +1,30 @@
+﻿<ion-view view-title="监控塔吊列表">
+    <ion-content padding="false" has-bouncing="true">
+        <div class="list">            
+            <a class="item item-avatar" ng-repeat="device in devices" href="#/menus/monitor/device/{{device.DeviceSN}}/{{device.MonitorType}}" >
+                <div class="item-image">
+                    <i ng-if="device.IsOnline==1" class="icon {{device.MonitorType | machineIconTran:2}} icon-large online"></i>
+                    <div ng-if="device.IsOnline==1" class="font-small">在线</div>
+                    <i ng-if="device.IsOnline==0" class="icon {{device.MonitorType | machineIconTran:2}} icon-large offline"></i>
+                    <div ng-if="device.IsOnline==0" class="font-small">离线</div>
+                </div>
+                <h2>备案编号：{{device.FilingNO}}</h2> 
+                <p>
+                    黑匣子编号：{{device.CustomNO}}<br/>
+                    所属工程：{{device.ProjectName}}
+                </p>        
+            </a> 
+           <!-- <a class="item item-avatar" href="#/menus/monitor/device/1">
+                <div class="item-image">
+                    <i class="icon icon-construction15 icon-large offline"></i>
+                    <div class="font-small">离线</div>
+                </div>
+                <h2>备案编号：鄂AA-100527</h2>
+                <p>
+                    黑匣子编号：010914120032<br />
+                    所属工程：大汉阳地区现代有轨电车试验线试验线试验线试验线试验线
+                </p>
+            </a> -->
+        </div>
+    </ion-content>
+</ion-view>

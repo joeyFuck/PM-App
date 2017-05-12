@@ -1,0 +1,61 @@
+﻿<ion-view view-title="备案列表">
+    <ion-content padding="false" has-bouncing="true">
+         <ion-refresher pulling-text="下拉刷新"
+                     refreshing-text="刷新成功"
+                     refreshing-icon="ion-loading-c"
+                     on-refresh="doRefresh()">
+      </ion-refresher> 
+        <div class="list">            
+            <a class="item item-avatar" href="#/menus/monitor/machinerydetail/{{machine.BaID}}" ng-repeat="machine in machinerys">
+                <div class="item-image">
+                    <i class="icon {{machine.MachineType | machineIconTran:1}}  icon-large positive"></i>
+                    <div  class="font-smaller">{{machine.MachineryName}}</div>
+                </div>
+                <h2>{{machine.BeiAnICP}}</h2> 
+                <p>
+                    设备状态：{{machine.DeviceStatus | deviceStatusTran}}<br/>
+                    产权单位：{{machine.PropertyCompanyName}}
+                </p>        
+            </a> 
+            <!--<a class="item item-avatar" href="#/menus/monitor/machinerys/1">
+                <div class="item-image">
+                    <i class="icon icon-elevator3 icon-large positive"></i>
+                    <div class="font-smaller">施工升降机</div>
+                </div>
+                <h2>鄂AA-100527</h2>
+                <p>
+                    设备状态：使用中<br />
+                    产权单位：台州市椒江某单位
+
+                </p>
+            </a>
+            <a class="item item-avatar" href="#/menus/monitor/machinerys/1">
+                <div class="item-image">
+                    <i class="icon icon-crane30 icon-large positive"></i>
+                    <div class="font-smaller">物料提升机</div>
+                </div>
+                <h2>鄂AA-100527</h2>
+                <p>
+                    设备状态：使用中<br />
+                    产权单位：台州市椒江某单位
+
+                </p>
+            </a>
+            <a class="item item-avatar" href="#/menus/monitor/machinerys/1">
+                <div class="item-image">
+                    <i class="icon icon-excavator3 icon-large positive"></i>
+                    <div class="font-smaller">其它</div>
+                </div>
+                <h2>鄂AA-100527</h2>
+                <p>
+                    设备状态：使用中<br />
+                    产权单位：台州市椒江某单位
+
+                </p>
+            </a>-->
+        </div>
+        <ion-infinite-scroll ng-if="load_over" on-infinite="loadMore()"
+                           distance="1%">
+      </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

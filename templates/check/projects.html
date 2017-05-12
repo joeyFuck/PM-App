@@ -1,0 +1,28 @@
+﻿<ion-view view-title="移动执法">
+  <ion-content padding="false" has-bouncing="true">
+      <ion-refresher pulling-text="下拉刷新"
+                     refreshing-text="刷新成功"
+                     refreshing-icon="ion-loading-c"
+                     on-refresh="doRefresh()">
+      </ion-refresher> 
+      <div class="list card prolist" ng-repeat="project in projects"> 
+          <div class="item item-divider item-btitle protop">{{project.RegNumber}}<span class="item-note">最近检查：{{project.LastCheckDate | brDateFilter2}}</span></div>
+          <a class="item item-body" href="#/menus/check/projectchecks/{{project.ProID}}/{{project.ProName}}">
+              <h2> 
+                  {{project.ProName}}               
+              </h2>
+              <div class="prodes">
+                  	施工单位：{{project.ShigongUnitName}} <br/>
+                  	监督员：{{project.ProjectUsers}}
+              </div>
+              <div class="pronum">执行检查{{project.CheckMobileCount}}次 通知书{{project.LastNoticeCount }}份</div>
+          </a>
+      </div>
+      <!--<ion-infinite-scroll ng-if="moreDataCanBeLoaded()" on-infinite="loadMore()"
+                           distance="1%">
+      </ion-infinite-scroll>-->
+      <ion-infinite-scroll ng-if="load_over" on-infinite="loadMore()"
+                           distance="1%">
+      </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

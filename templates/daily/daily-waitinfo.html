@@ -1,0 +1,96 @@
+﻿<ion-view view-title="待办事务">   
+    <ion-content class="padding" has-bouncing="true">
+        <div class="wrap">
+            <div class="op-info">
+                <div class="op-name">{{dailyWaitDoData.CheckUser}} {{dailyWaitDoData.CheckTime}}</div>
+                <p class="op-content">
+                    {{dailyWaitDoData.NoticeContent}}
+                </p>
+                <ul class="op-ul clearfix" ng-repeat="photo in dailyWaitDoData.Attachments">
+                    <li><a><img ng-click="showPic('{{dailyWaitDoData.WebApiUrl}}{{photo.FileName}}')" ng-src="{{photo.FileName}}"/></a></li>
+                </ul>              
+                <div class="op-result">
+                    结果:{{dailyWaitDoData.NoticeType | noticeType}}  截止:{{dailyWaitDoData.MaxDoDate}}
+                </div>
+            </div>
+            <div class="op-pro">
+                <ul>
+                     <li ng-if="dailyWaitDoData.Type==9||dailyWaitDoData.Type==7||dailyWaitDoData.Type==8">
+                        <div class="{{dailyWaitDoData.Type==7 ? 'op-pro-end' : 'op-pro-n'}}">站长发放</div>
+                        <div class="{{dailyWaitDoData.Type==7 ? 'op-pro-ld' : 'op-pro-d'}}">
+                            <div class="op-pro-detail">
+                                <div class="op-name">{{dailyWaitDoData.NoticeGrantUser}} {{dailyWaitDoData.NoticeGrantDate}}</div>
+                                <div class="op-result">
+                                    发放结论，{{dailyWaitDoData.Type==7 ? '待发放' : '通过'}}
+                                </div>  
+                                <div class="op-result">
+                                    {{dailyWaitDoData.Content2}}
+                                </div>                                
+                            </div>
+                        </div>
+                    </li>                    
+                    <li ng-if="dailyWaitDoData.Type==9||dailyWaitDoData.Type==6||dailyWaitDoData.Type==8">
+                        <div class="op-pro-n">整改提交</div>
+                        <div class="op-pro-d">
+                            <div class="op-pro-detail">
+                                <div class="op-name">{{dailyWaitDoData.ReplyCompanyName}} {{dailyWaitDoData.ReplyDate}}</div>
+                                <div class="op-result">
+                                    {{dailyWaitDoData.ReplyContent}}
+                                </div>                              
+                                <ul class="op-ul clearfix" ng-repeat="photo in dailyWaitDoData.AttachmentsReply">
+                    <li><a><img ng-click="showPic('{{dailyWaitDoData.WebApiUrl}}{{photo.FileName}}')" ng-src="{{photo.FileName}}"/></a></li>
+                </ul> 
+                            </div>
+                        </div>
+                    </li>
+                    <li ng-if="dailyWaitDoData.Type==9||dailyWaitDoData.Type==6||dailyWaitDoData.Type==8">
+                        <div class="op-pro-n">监理审查</div>
+                        <div class="op-pro-d">
+                            <div class="op-pro-detail">
+                                <div class="op-name">{{dailyWaitDoData.FirstCheckUser}} {{dailyWaitDoData.FirstCheckDate}}</div>
+                                <div class="op-result">
+                                    审查结论，通过
+                                </div>  
+                                <div class="op-result">
+                                    {{dailyWaitDoData.Content3}}
+                                </div>                                
+                            </div>
+                        </div>
+                    </li>
+                     <li ng-if="dailyWaitDoData.Type==9||dailyWaitDoData.Type==6||dailyWaitDoData.Type==8">
+                        <div class="{{dailyWaitDoData.Type==6||dailyWaitDoData.Type==8 ? 'op-pro-end' : 'op-pro-n'}}">复查</div>
+                        <div class="{{dailyWaitDoData.Type==6||dailyWaitDoData.Type==8 ? 'op-pro-ld' : 'op-pro-d'}}">
+                            <div class="op-pro-detail">
+                                <div class="op-name">{{dailyWaitDoData.ReCheckPerson}} {{dailyWaitDoData.ReCheckDate}}</div>
+                                <div class="op-result">
+                                    复查结论，{{dailyWaitDoData.Type==6 || dailyWaitDoData.Type==8 ? '待复查' : dailyWaitDoData.DoReplyContent}}
+                                </div>                               
+                                <div class="op-result">
+                                   {{dailyWaitDoData.Content4}}
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li ng-if="dailyWaitDoData.Type==9">
+                        <div class="op-pro-end">复工</div>
+                        <div class="op-pro-ld">
+                            <div class="op-pro-detail">                               
+                                <div class="op-name">{{dailyWaitDoData.BackWorkUser}} {{dailyWaitDoData.BackWorkDate}}</div>
+                                <div class="op-result">
+                                    复工结论：{{dailyWaitDoData.DoReplyContent2==null ? '待复工' : dailyWaitDoData.DoReplyContent2}}
+                                </div> 
+                                 <div class="op-result">
+                                   {{dailyWaitDoData.F2}}
+                                </div>                              
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>  
+         <div class="button-bar">
+            <a class="button" ng-click="through()">通过</a>
+            <a class="button" ng-click="showPopup()">不通过</a>
+         </div>           
+    </ion-content>
+</ion-view>

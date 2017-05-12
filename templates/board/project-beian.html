@@ -1,0 +1,30 @@
+﻿<ion-view view-title="起重机械">
+    <ion-content padding="false" has-bouncing="true">
+        <div class="list list-inset">            
+            <div class="item">
+                {{beiandetail.BeiAnICP}}
+                <br>
+                <br>
+                <span class="item-note" style="float: left;">{{beiandetail.PropertyUnit}}</span>              
+            </div>
+            <div class="item">
+                安装单位
+                <br>
+                <br>
+                <span class="item-note" style="float: left;">{{beiandetail.InstallUnit}}/{{beiandetail.InstallDate}}</span>
+            </div>                        
+            <div class="item">
+                检测单位
+                <br>
+                <br>
+                <span class="item-note" style="float: left;">{{beiandetail.CheckUnit}}/{{beiandetail.CheckDate}}</span>
+            </div>     
+            <div class="item">
+                使用单位
+                <br>
+                <br>
+                <span class="item-note" style="float: left;">{{beiandetail.UseRegUnit}}/{{beiandetail.UseRegDate}}</span>
+            </div>                
+        </div>
+    </ion-content>
+</ion-view>

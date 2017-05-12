@@ -1,0 +1,18 @@
+{
+  "index.html": {
+    "resources": [
+      "templates/common/company-detail.html",
+      "js/app.js",
+      "lib/ionic/css/ionic.css",
+      "js/services.js",
+      "templates/account/about.html",
+      "css/style.css",
+      "lib/ionic/js/ionic.bundle.min.js",
+      "templates/account/zone.html",
+      "templates/common/project-detail.html",
+      "js/controllers.js",
+      "lib/ionic/fonts/ionicons.ttf"
+    ],
+    "refer": []
+  }
+}

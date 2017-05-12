@@ -1,0 +1,66 @@
+﻿<ion-view view-title="日常信息"> 
+   <ion-pane>
+        <ion-tabs class="tabs-top tabs-icon-top">
+            <!-- Tab 1 -->
+            <ion-tab title="待办事务" icon="ion-email" ng-controller="ctrl-daily-waitlist">
+                <ion-nav-view name="tab-tab1">
+                    <ion-content>
+                       <ion-refresher pulling-text="下拉刷新"
+                     refreshing-text="刷新成功"
+                     refreshing-icon="ion-loading-c"
+                     on-refresh="doWaitListRefresh()">
+                      </ion-refresher>
+                      <ion-list>
+                          <ion-item ng-repeat="item in waitdolist" href="#/menus/daily/waitinfo/{{item.NoticeID}}/{{item.ReplyID}}/{{item.Type}}">
+                           [{{item.TypeName}}]{{item.ProName}}
+                          </ion-item>                                                                  
+                    </ion-list>
+                      <ion-infinite-scroll ng-if="load_waitlist_over" on-infinite="loadWaitListMore()"
+                                           distance="1%">
+                      </ion-infinite-scroll>
+                    </ion-content>
+                </ion-nav-view>
+            </ion-tab>
+            <!-- Tab 2 -->
+            <ion-tab title="公告通知" icon="ion-chatbubble-working" ng-controller="ctrl-daily-notice">
+                <ion-nav-view name="tab-tab2">
+                    <ion-content>
+                        <ion-refresher pulling-text="下拉刷新"
+                     refreshing-text="刷新成功"
+                     refreshing-icon="ion-loading-c"
+                     on-refresh="doNoticeListRefresh()">
+                      </ion-refresher>
+                      <ion-list>
+                          <ion-item ng-repeat="item in noticelist" href="#/menus/daily/info/{{item.InfoID}}">
+                              {{item.InfoTitle}}
+                          </ion-item>                                                               
+                    </ion-list>
+                      <ion-infinite-scroll ng-if="load_noticelist_over" on-infinite="loadNoticeListMore()"
+                                           distance="1%">
+                      </ion-infinite-scroll>
+                    </ion-content>
+                </ion-nav-view>
+            </ion-tab>
+            <!-- Tab 3 -->
+            <ion-tab title="常用规范" icon="ion-images" ng-controller="ctrl-daily-standard">
+                <ion-nav-view name="tab-tab3">
+                    <ion-content>
+                        <ion-refresher pulling-text="下拉刷新"
+                     refreshing-text="刷新成功"
+                     refreshing-icon="ion-loading-c"
+                     on-refresh="doStandardListRefresh()">
+                      </ion-refresher>
+                      <ion-list>
+                          <ion-item ng-repeat="item in standardlist" href="#/menus/daily/standard/{{item.InfoID}}">
+                              {{item.InfoTitle}}
+                          </ion-item>       
+                    </ion-list>
+                      <ion-infinite-scroll ng-if="load_standardlist_over" on-infinite="loadStandardListMore()"
+                                           distance="1%">
+                      </ion-infinite-scroll>
+                    </ion-content>
+                </ion-nav-view>
+            </ion-tab>
+        </ion-tabs>
+    </ion-pane>
+    </ion-view>

@@ -1,0 +1,43 @@
+﻿<ion-view view-title="检查记录">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ion-compose" ng-click="addnew()"></button>
+    </ion-nav-buttons>
+  <ion-content class="padding" has-bouncing="true">
+       <ion-refresher pulling-text="下拉刷新"
+                     refreshing-text="刷新成功"
+                     refreshing-icon="ion-loading-c"
+                     on-refresh="doRefresh()">
+      </ion-refresher> 
+      <div class="list">
+          <a class="item item-avatar" href="#/menus/check/checkdetail/edit/{{check.CheckID}}/{{check.ProID}}" ng-repeat="check in checks">
+              <div class="item-image">
+                  <i class="icon ion-ios-paper-outline icon-large positive"></i>
+                  <div class="font-smaller">{{CheckTypeName}}</div>
+                  <div class="font-smaller">{{check.CheckTime| brDateFilter2}}</div>
+              </div>
+              <h2>{{check.ProName | delHtmlTag}}</h2>
+              <p>
+                  形象进度：{{check.ItemDes}}<br />
+                  检查人员：{{check.CheckUser}}<br />
+                  检查结果：<span class="assertive">{{check.TypeName}}</span>
+              </p>
+          </a>
+         <!-- <a class="item item-avatar" href="#/menus/check/checks/1">
+              <div class="item-image">                  
+                  <i class="icon ion-ios-list-outline icon-large positive"></i>
+                  <div class="font-smaller">质量检查</div>  
+                  <div class="font-smaller">2015-01-10</div>               
+              </div>
+              <h2>杭州市下沙九堡土地建设工程1#</h2>
+              <p>
+                  形象进度：主体<br />
+                  检查人员：五义、李际、王立<br />
+                  检查结果：无
+              </p>
+          </a>  -->      
+      </div>
+        <ion-infinite-scroll ng-if="load_over" on-infinite="loadMore()"
+                           distance="1%">
+      </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

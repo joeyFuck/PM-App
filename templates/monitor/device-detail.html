@@ -1,0 +1,49 @@
+﻿<ion-view view-title="设备详情">
+    <ion-content padding="false" has-bouncing="true">
+        <div class="list list-inset">            
+            <div class="item">
+                备案编号
+                <span class="item-note">{{devicedetail.FilingNO}}</span>
+            </div>  
+            <div class="item">
+                设备编号
+                <span class="item-note">{{devicedetail.DeviceNO}}</span>
+            </div>  
+            <a class="item item-icon-right" href="#/menus/common/companys/1/{{devicedetail.DeviceSN}}/{{devicedetail.MonitorType}}">
+                施工单位
+                <span class="item-note fixwidth">{{devicedetail.ContractorCompanyName}}</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </a>
+            <a class="item item-icon-right" href="#/menus/common/companys/2/{{devicedetail.DeviceSN}}/{{devicedetail.MonitorType}}">
+                产权单位
+                <span class="item-note fixwidth">{{devicedetail.OwnerCompanyName}}</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </a> 
+            <a class="item item-icon-right" href="#/menus/common/projects/{{devicedetail.DeviceSN}}/{{devicedetail.MonitorType}}">
+                工程名称
+                <span class="item-note fixwidth">{{devicedetail.ProjectName}}</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </a> 
+
+            <a class="item item-icon-right" href="#/menus/monitor/warnings">
+                总报警次数
+                <span class="item-note">{{devicedetail.AlarmCount}}</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </a>
+            <a class="item item-icon-right" href="#/menus/monitor/warnings">
+                已处理报警数
+                <span class="item-note">{{devicedetail.OperateAlarmCount}}</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </a>
+            <a class="item item-icon-right" href="#/menus/monitor/warnings">
+                未处理报警数
+                <span class="item-note">{{devicedetail.UnoperateAlarmCount}}</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </a>
+            <div class="button-bar">
+                <a class="button button-positive" href="#/menus/monitor/devicedetail/info/1">黑匣子信息</a>
+                <a class="button button-balanced" href="#/menus/monitor/devicedetail/simulate/1">模拟监控</a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

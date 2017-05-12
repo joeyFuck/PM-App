@@ -1,0 +1,23 @@
+<ion-view view-title="公告通知">
+  <ion-content padding="false" has-bouncing="true">
+      <ion-refresher pulling-text="下拉刷新"
+                     refreshing-text="刷新成功"
+                     refreshing-icon="ion-loading-c"
+                     on-refresh="doRefresh()">
+      </ion-refresher> 
+     <div class="list card prolist" ng-repeat="item in notices">
+          <div class="item item-divider item-btitle protop">{{item.InfoTypeStr}}</div>
+          <a class="item item-body" href="#/menus/daily/info/{{item.ID}}">
+              <h2>
+                 {{item.CreateTime|brDateFilter3}}
+              </h2>
+              <div class="prodes"> 
+                   {{item.InfoTitle}}
+              </div>
+          </a>
+      </div>
+      <ion-infinite-scroll ng-if="load_over" on-infinite="loadMore()"
+                           distance="1%">
+      </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

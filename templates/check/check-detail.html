@@ -1,0 +1,169 @@
+﻿<ion-view>
+    <ion-nav-title>
+        {{checkdetail.CheckType.name}}
+    </ion-nav-title>
+  <ion-content class="padding">
+		
+      <div class="list">
+          <div class="item">
+              工程名称
+              <span class="item-note" style="white-space: initial;">{{checkdetail.ProName}}</span>
+          </div>  
+          <label class="item" ng-if="isedit">  
+                  形象进度
+              <span class="item-note">{{checkdetail.projectProgressname}}</span>
+              <!--<input type="text" name="CheckTime" ng-model="checkdetail.CheckTime" value="{{checkdetail.CheckTime}}" readonly />-->
+          </label>  
+          <label class="item item-input item-select" ng-if="!isedit">
+              <div class="input-label">
+                  形象进度
+              </div>
+            <select ng-model="checkdetail.ProjectProgress" ng-options="projectProgress.Value as projectProgress.Name for projectProgress in projectProgressList">
+    		
+			</select>             
+          </label>
+          <label class="item" ng-if="isedit">  
+                  检查时间
+              <span class="item-note">{{checkdetail.CheckTime}}</span>
+              <!--<input type="text" name="CheckTime" ng-model="checkdetail.CheckTime" value="{{checkdetail.CheckTime}}" readonly />-->
+          </label>  
+           <label class="item item-input" ng-if="!isedit">   
+                   <div class="input-label">
+                  检查时间
+              </div>      
+              <!--<span class="item-note">{{checkdetail.CheckTime}}</span>-->
+             <input type="date" style="float: right;" name="CheckTime" ng-model="checkdetail.CheckTime"  />
+          </label> 
+          <div class="item" ng-if="isedit">
+              检查人员
+              <span class="item-note">{{checkdetail.CheckUserNames}}</span>
+          </div> 
+          <label class="item item-input" ng-if="!isedit">
+              <div class="input-label">
+                  检查人员
+              </div>       
+        <input type="search" placeholder="请点击选择检查人员" style="text-align:right" ng-model="checkdetail.CheckUserNames" ng-click="openPopover()">
+      <!--<input type="text" name="checkuser" ng-model="checkdetail.CheckUser">-->
+        </label>   
+        
+        <label class="item item-input" ng-if="isedit">
+              <textarea ng-if="checkdetail.CheckType.typeid==2" readonly="readonly" name="checkcontent" rows="4" placeholder="检查内容" ng-model="checkdetail.CheckContent"></textarea>
+              <textarea ng-if="checkdetail.CheckType.typeid==1" readonly="readonly"  name="checkcontent" rows="4" placeholder="检查情况/问题隐患" ng-model="checkdetail.CheckContent"></textarea>
+          </label>
+          <label class="item item-input" ng-if="isedit">
+              <textarea ng-if="checkdetail.CheckType.typeid==2" readonly="readonly"  name="supervisesuggest" rows="4" placeholder="问题隐患" ng-model="checkdetail.SuperviseSuggest"></textarea>
+              <textarea ng-if="checkdetail.CheckType.typeid==1" readonly="readonly"  name="supervisesuggest" rows="4" placeholder="监督要求/建议" ng-model="checkdetail.SuperviseSuggest"></textarea>
+          </label>                
+          <label class="item item-input" ng-if="!isedit">
+              <textarea ng-if="checkdetail.CheckType.typeid==2"  name="checkcontent" rows="4" placeholder="检查内容" ng-model="checkdetail.CheckContent"></textarea>
+              <textarea ng-if="checkdetail.CheckType.typeid==1" name="checkcontent" rows="4" placeholder="检查情况/问题隐患" ng-model="checkdetail.CheckContent"></textarea>
+          </label>
+          <label class="item item-input" ng-if="!isedit">
+              <textarea ng-if="checkdetail.CheckType.typeid==2" name="supervisesuggest" rows="4" placeholder="问题隐患" ng-model="checkdetail.SuperviseSuggest"></textarea>
+              <textarea ng-if="checkdetail.CheckType.typeid==1" name="supervisesuggest" rows="4" placeholder="监督要求/建议" ng-model="checkdetail.SuperviseSuggest"></textarea>
+          </label>		
+           <div class="item" ng-if="isedit">
+              通知书编号
+              <span class="item-note">{{checkdetail.NoticeNo}}</span>
+          </div> 
+           <label class="item item-input" ng-if="!isedit">
+              <div class="input-label">
+                  通知书编号
+              </div>              
+              <input type="text" style="text-align:right" ng-model="checkdetail.NoticeNo">
+          </label>  
+          <div class="item" ng-if="isedit">
+              通知书类型
+              <span class="item-note">{{checkdetail.NoticeTypeName}}</span>
+          </div>  	
+          <div class="item item-input item-select" ng-if="checkdetail.CheckType.typeid==1&&!isedit">
+              <div class="input-label">
+                  通知书类型
+              </div>
+              <select ng-model="checkdetail.NoticeType" style="height: 55px;" >
+                  <option value="1">抽查记录</option>
+                  <option value="2">建议书</option>
+                  <option value="3">整改通知</option>
+                  <option value="4">停工整改</option>
+               </select>
+          </div>
+          <div class="item item-input item-select" ng-if="checkdetail.CheckType.typeid==2&&!isedit">
+              <div class="input-label">
+                  通知书类型
+              </div>
+              <select ng-model="checkdetail.NoticeType" style="height: 55px;">
+                  <option value="1">抽查通知（不需回复）</option>
+                  <option value="2">抽查通知（需回复）</option>
+                  <option value="3">责令整改</option>
+                  <option value="4">局部停工整改</option>
+              </select>
+          </div>  
+		<div>
+          <div class="item" ng-if="isedit"> 
+              	发放对象
+              	<span class="item-note" ng-if="isedit">{{checkdetail.GrantObject}}</span>
+          </div> 
+ 		 
+ 		 </div>
+          <div ng-if="!isedit">
+          <div class="item" > 
+              发放对象
+          </div>         
+          <ion-list >
+              <ion-checkbox ng-model="checkdetail.GrantObject1">施工单位</ion-checkbox>
+              <ion-checkbox ng-model="checkdetail.GrantObject2">监理单位</ion-checkbox>
+              <ion-checkbox ng-model="checkdetail.GrantObject3">建设单位</ion-checkbox>
+          </ion-list>   
+          </div>          
+           <div class="item" ng-if="isedit">
+              整改期限（天）
+              <span class="item-note" style="text-align: right;">{{checkdetail.RectificationLimit}}</span>
+          </div>         
+          <label class="item item-input" ng-if="!isedit"> 
+              <div class="input-label">
+                  整改期限（天）
+              </div>
+              <input type="text" name="MaxDoDate" style="text-align: right;" ng-model="checkdetail.RectificationLimit" value="{{checkdetail.RectificationLimit}}" />
+          </label>
+
+          <div class="item">
+              <div class="imgitem" ng-repeat="photo in photos"><img ng-click="showPic('{{checkdetail.WebApiUrl}}{{photo.PicPath}}')" ng-src="{{checkdetail.WebApiUrl}}{{photo.PicPath_s}}" /></div>
+              <div class="imgitem imgitem-border" ng-if="!isedit"><i class="ion-ios-camera plussize" ng-click="showActionsheet()"></i></div> 
+          </div>
+          <br/>
+          <button class="button button-positive button-block" ng-click="savecheck()" ng-if="!isedit">保存</button>       
+          <!--<button ng-if="isedit" class="button button-positive button-block" ng-click="printcheck()">打印</button>-->   
+          <!--<button ng-if="isedit" class="button button-positive button-block" ng-click="printcheck2()">打印2</button>-->     
+    </div>
+  </ion-content>
+</ion-view>
+
+<script id="my-popover.html" type="text/ng-template">
+	<ion-view>
+<ion-content>
+	 <div class="bar bar-header item-input-inset"> 	        
+            <!--<button class="button back-button buttons button-clear header-item" ng-click="closePopover()">
+            <i class="ion-arrow-left-c"></i> 返回
+        </button>-->
+    <label class="item-input-wrapper">
+        <i class="icon  ion-ios-search-strong placeholder-icon"></i>
+        <input type="text" id="checkuser"  placeholder="请输入关键字查询" ng-change="getcheckusers(searchName)"   ng-model="searchName" autofocus="autofocus">
+    </label>
+         <button class="button button-positive"  ng-click="closePopover()">确定</button>
+</div>  
+     <ion-item class="item-divider">
+            已选人员
+        </ion-item>
+    <ion-item>
+             <ion-checkbox ng-repeat="selectuser in selectusers" ng-model="selectuser.checked" ng-click="selectcheckusers(selectuser)"> {{ selectuser.TrueName }}</ion-checkbox>
+    </ion-item>
+    <ion-item class="item-divider">
+            选择人员
+        </ion-item>
+    <ion-item>
+             <ion-checkbox ng-repeat="user in userlist" ng-model="user.checked" ng-click="selectcheckusers(user)"> {{ user.TrueName }}</ion-checkbox>
+    </ion-item>
+</ion-content>
+</ion-view>
+
+</script> 
